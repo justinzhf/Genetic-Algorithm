@@ -1,5 +1,5 @@
 import numpy as np
-
+#Author: hf-z
 
 class GeneticFeatureSelection(object):
     '''A simple and easy-to-use genetic algorithm.
@@ -16,7 +16,7 @@ class GeneticFeatureSelection(object):
         generate_function: use which function to generate initial chromosomes, RND_INT or RND_STR.
     '''
 
-    def __init__(self, F, bits_num, N=6, pc=1, pm=0.1, max_iter=1000, generate_function='RND_STR'):
+    def __init__(self, F, bits_num, N=6, pc=1, pm=0, max_iter=1000, generate_function='RND_STR'):
         self.F = F
         self.bits_num = bits_num
         self.N = N
@@ -62,7 +62,7 @@ class GeneticFeatureSelection(object):
             population = self._generate_population_based_rndstr()
         else:
             raise NameError(self.generate_function+' is not defined.')
-
+        print(population.shape)
 
         max_fitness_item = [0, -np.inf]
         res = (0, -np.inf)
@@ -134,7 +134,7 @@ class GeneticFeatureSelection(object):
 
 
 if __name__ == "__main__":
-    def F2(p, *kw):
+    def F(p, *kw):
         res = []
         for i in p:
             t = int(''.join(i), 2)
@@ -142,14 +142,19 @@ if __name__ == "__main__":
         return np.array(res)
 
 
-    gfs = GeneticFeatureSelection(F2, bits_num=5, N=6, pc=0.8, pm=0, max_iter=100)
-    res, mfs, afs = gfs.genetic(1,2)
+    gfs = GeneticFeatureSelection(F, bits_num=5, N=6, pc=0.8, pm=0, max_iter=100)
+    res, mfs, afs = gfs.genetic()
     print(res)
-    import matplotlib.pyplot as plt
 
+    import matplotlib.pyplot as plt
     plt.figure()
     plt.subplot(211)
+    plt.xlabel('iterations')
+    plt.ylabel('max fitness value')
     plt.plot(mfs)
     plt.subplot(212)
+
+    plt.xlabel('iterations')
+    plt.ylabel('average fitness value')
     plt.plot(afs)
     plt.show()
