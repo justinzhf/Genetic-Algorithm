@@ -5,7 +5,7 @@ A simple and easy-to-use genetic algorithm framework. All you need to do is defi
 Eg. Find the maximum value of y=x^2, where x is integer and the range is [0,31].
 * define a fitness function.
     
-    
+```python 
     def F(chromosomes,*kw):
     '''
     params:
@@ -19,19 +19,20 @@ Eg. Find the maximum value of y=x^2, where x is integer and the range is [0,31].
             t = int(''.join(i), 2)
             fitness_values.append(t ** 2)
         return np.array(fitness_values)
-  
+ ```
 * only need 5 bits to represent all solutions, so set the length of chromosome 5, and set
  the number of chromosomes 6 randomly.
 
-
+```python
     ga=GeneticAlgorithm(F, bits_num=5, N=6)
+```
 * get the solution.
 
-
+```python
     res,max_fit_values,avg_fit_values=ga.genetic()
     print(res)
     #print result: ('11111',961)
- 
+```
  That's all, Done!
  ## Others
  There is an example in source code.
