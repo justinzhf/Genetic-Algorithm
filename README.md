@@ -1,5 +1,5 @@
 # Genetic-Algorithm
-A simple and easy-to-use genetic algorithm framework
+A simple and easy-to-use genetic algorithm framework. All you need to do is defining your fitness function.
 
 ## Example
 Eg. Find the maximum value of y=x^2, where x is integer and the range is [0,31].
@@ -14,6 +14,7 @@ Eg. Find the maximum value of y=x^2, where x is integer and the range is [0,31].
                     each item of the list is a chromosome.
     '''
         fitness_values = []
+        #calculate square of each chromosome.
         for i in p:
             t = int(''.join(i), 2)
             fitness_values.append(t ** 2)
